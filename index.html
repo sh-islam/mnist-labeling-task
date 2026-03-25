@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MNIST Labeling Task</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>MNIST Labeling Task</h1>
+      <div class="session-buttons">
+        <button id="btn-load" title="Load a previous session CSV">Load Session</button>
+        <button id="btn-save" title="Download progress as CSV">Save Session</button>
+        <input type="file" id="file-input" accept=".csv" hidden>
+      </div>
+    </header>
+
+    <div class="progress-section">
+      <span id="progress-text">0 / 0 (0%)</span>
+      <div class="progress-bar">
+        <div id="progress-fill"></div>
+      </div>
+    </div>
+
+    <div class="main-area">
+      <div id="start-screen">
+        <p>Press <strong>Start</strong> to begin labeling, or <strong>Load Session</strong> to resume.</p>
+        <button id="btn-start">Start</button>
+      </div>
+
+      <div id="label-screen" class="hidden">
+        <div class="zoom-toolbar">
+          <button id="btn-zoom-in" title="Zoom in">+</button>
+          <button id="btn-zoom-out" title="Zoom out">&minus;</button>
+          <button id="btn-zoom-reset" title="Reset zoom">Reset</button>
+          <span id="zoom-level">100%</span>
+        </div>
+
+        <div class="image-area">
+          <div class="image-container" id="image-container">
+            <canvas id="canvas"></canvas>
+          </div>
+        </div>
+
+        <div class="label-section">
+          <div class="label-display">
+            <span class="label-prompt">Your label:</span>
+            <span id="current-label" class="label-value">&mdash;</span>
+          </div>
+          <div class="image-info">
+            Image #<span id="img-index"></span> &middot; <span id="img-progress"></span>
+          </div>
+        </div>
+      </div>
+
+      <div id="done-screen" class="hidden">
+        <h2>All done!</h2>
+        <p>You have labeled all <span id="done-count"></span> images.</p>
+        <p>Click <strong>Save Session</strong> to download your labels.</p>
+      </div>
+    </div>
+
+    <div class="instructions">
+      <h3>Instructions</h3>
+      <table>
+        <tr><td><kbd>0</kbd>&ndash;<kbd>9</kbd></td><td>Enter a digit label</td></tr>
+        <tr><td id="confirm-key-label"><kbd>Enter</kbd></td><td>Confirm label &amp; next image</td></tr>
+        <tr><td id="clear-key-label"><kbd>Backspace</kbd></td><td>Clear current label</td></tr>
+        <tr><td><kbd>+</kbd> / <kbd>&minus;</kbd></td><td>Zoom in / out (or use toolbar)</td></tr>
+        <tr><td>Mouse wheel</td><td>Zoom in/out when hovering over image</td></tr>
+      </table>
+      <p style="margin-top: 12px;">
+        <span class="remap-link" id="remap-confirm">Remap confirm key</span> &middot;
+        <span class="remap-link" id="remap-clear">Remap clear key</span>
+      </p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
