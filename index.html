@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>MNIST Labeling Task</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -45,9 +45,22 @@
         </div>
 
         <div class="label-section">
-          <div class="label-display">
-            <span class="label-prompt">Your label:</span>
-            <span id="current-label" class="label-value">&mdash;</span>
+          <div class="numpad">
+            <button class="numpad-digit" data-digit="1">1</button>
+            <button class="numpad-digit" data-digit="2">2</button>
+            <button class="numpad-digit" data-digit="3">3</button>
+            <button class="numpad-digit" data-digit="4">4</button>
+            <button class="numpad-digit" data-digit="5">5</button>
+            <button class="numpad-digit" data-digit="6">6</button>
+            <button class="numpad-digit" data-digit="7">7</button>
+            <button class="numpad-digit" data-digit="8">8</button>
+            <button class="numpad-digit" data-digit="9">9</button>
+            <button class="numpad-action numpad-clear" id="btn-clear">Clear</button>
+            <button class="numpad-digit" data-digit="0">0</button>
+            <button class="numpad-action numpad-confirm disabled" id="btn-confirm">OK</button>
+          </div>
+          <div class="selected-label">
+            Selected: <span id="current-label">&mdash;</span>
           </div>
           <div class="image-info">
             Image #<span id="img-index"></span> &middot; <span id="img-progress"></span>

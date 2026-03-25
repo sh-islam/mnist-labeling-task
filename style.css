@@ -174,37 +174,73 @@ canvas {
   width: 100%;
 }
 
-.label-display {
+/* Numpad */
+.numpad {
+  display: grid;
+  grid-template-columns: repeat(3, 72px);
+  grid-template-rows: repeat(4, 60px);
+  gap: 10px;
+  justify-content: center;
+  margin: 24px auto 16px;
+}
+
+.numpad-digit,
+.numpad-action {
+  font-size: 1.5rem;
+  font-weight: 600;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
-  margin-top: 32px;
-  margin-bottom: 16px;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  touch-action: manipulation;
 }
 
-.label-prompt {
-  font-size: 1.1rem;
-  color: #aaa;
-}
-
-.label-value {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #fff;
+.numpad-digit {
   background: #16213e;
   border: 2px solid #0f3460;
-  border-radius: 8px;
-  width: 64px;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: border-color 0.15s;
+  color: #e0e0e0;
 }
 
-.label-value.has-value {
-  border-color: #533483;
+.numpad-digit.selected {
+  background: #533483;
+  border-color: #7a4ab5;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(83, 52, 131, 0.5);
+}
+
+.numpad-clear {
+  background: #2a1a1a;
+  border: 2px solid #5a2020;
+  color: #e94560;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.numpad-confirm {
+  background: #1a2a1a;
+  border: 2px solid #205a20;
+  color: #4ae945;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.numpad-confirm.disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.selected-label {
+  text-align: center;
+  font-size: 1.05rem;
+  color: #aaa;
+  margin-bottom: 12px;
+}
+
+.selected-label span {
+  font-weight: 700;
+  font-size: 1.4rem;
   color: #e94560;
 }
 
@@ -325,4 +361,51 @@ kbd {
 
 .remap-link:hover {
   color: #e94560;
+}
+
+/* Prevent page zoom on mobile */
+html {
+  touch-action: pan-x pan-y;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  #app {
+    padding: 12px;
+  }
+
+  header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  header h1 {
+    font-size: 1.1rem;
+  }
+
+  .session-buttons {
+    justify-content: center;
+  }
+
+  .numpad {
+    grid-template-columns: repeat(3, 80px);
+    grid-template-rows: repeat(4, 64px);
+    gap: 10px;
+  }
+
+  .numpad-digit,
+  .numpad-action {
+    font-size: 1.6rem;
+  }
+
+  .zoom-toolbar button {
+    min-width: 44px;
+    height: 44px;
+  }
+
+  .instructions td:first-child {
+    width: 120px;
+  }
 }

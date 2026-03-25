@@ -123,14 +123,22 @@
     }
   }
 
+  const btnConfirm = document.getElementById("btn-confirm");
+  const btnClear = document.getElementById("btn-clear");
+  const numpadDigits = document.querySelectorAll(".numpad-digit");
+
   // ── Label display ──────────────────────────────────────────────────────
   function setLabelDisplay(val) {
     if (val === null) {
       currentLabelEl.textContent = "\u2014";
-      currentLabelEl.classList.remove("has-value");
+      btnConfirm.classList.add("disabled");
+      numpadDigits.forEach((b) => b.classList.remove("selected"));
     } else {
       currentLabelEl.textContent = val;
-      currentLabelEl.classList.add("has-value");
+      btnConfirm.classList.remove("disabled");
+      numpadDigits.forEach((b) => {
+        b.classList.toggle("selected", parseInt(b.dataset.digit) === val);
+      });
     }
   }
 
@@ -282,6 +290,23 @@
     if (e.deltaY < 0) zoomIn();
     else zoomOut();
   }, { passive: false });
+
+  // ── Numpad clicks ──────────────────────────────────────────────────────
+  numpadDigits.forEach((btn) => {
+    btn.addEventListener("click", function () {
+      currentLabel = parseInt(this.dataset.digit);
+      setLabelDisplay(currentLabel);
+    });
+  });
+
+  btnConfirm.addEventListener("click", function () {
+    confirmLabel();
+  });
+
+  btnClear.addEventListener("click", function () {
+    currentLabel = null;
+    setLabelDisplay(null);
+  });
 
   // ── Save session ───────────────────────────────────────────────────────
   btnSave.addEventListener("click", function () {

@@ -21,6 +21,15 @@ labeling-task/
     ...
 ```
 
+### Dependency: `create_mnist_sample/` (not included in this repo)
+
+This repo only contains the labeling web app. The images and sample data it serves are produced by a separate local project, `create_mnist_sample/`, which:
+
+- **`train_and_score.py`** — trains classifiers (logistic regression, MLP) on MNIST training data and records per-image confidence scores
+- **`sample.py`** — samples N images from the low-confidence pool (where label errors concentrate) and exports them as PNGs organized by class
+
+The output of that pipeline (a `.npy` sample file + a folder of PNGs) is what `prepare.py` in this repo consumes to build the web app.
+
 ### Pipeline
 
 The full pipeline from training to labeling:
